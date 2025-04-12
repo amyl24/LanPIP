@@ -68,7 +68,7 @@ if 'login' not in st.session_state or st.session_state['login'] != True:
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     if st.button('Login'):
-        if (username in ['lyj1','lyj2','ss1','ss2','zhjw1','zhjw2','admin', '2264019668@qq.com','2363620110@qq.com', 'kmb2287@tc.columbia.edu', 'ziyue789@gmail.com',
+        if (username in ['luzq1','lvyj1','lvyj2','shs1','shs2','zhjw1','zhjw2','admin', '2264019668@qq.com','2363620110@qq.com', 'kmb2287@tc.columbia.edu', 'ziyue789@gmail.com',
                          'yf2696@tc.columbia.edu', 'jh4751@tc.columbia.edu', 'lrk2150@tc.columbia.edu',
                          'rl3370@tc.columbia.edu', 'htn2113@tc.columbia.edu', 'sms2491@tc.columbia.edu',
                          'qw2421@tc.columbia.edu', 'yy3341@tc.columbia.edu', 'cy2707@tc.columbia.edu',
