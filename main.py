@@ -79,7 +79,7 @@ def upload_chat_to_supabase(username, system, chat_history):
         "content": chat_history
     }
     response = requests.post(
-        f"{SUPABASE_URL}/rest/v1/chat_history",
+        f"{SUPABASE_URL}/rest/v1/lanpip-chatdata",
         headers=headers,
         data=json.dumps(payload)
     )
