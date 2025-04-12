@@ -68,9 +68,7 @@ def generate_response():
     output = fake.text()
     return output
     
-    
-if st.button("Test Upload"):
-    upload_chat_to_supabase("test_user", "test_system", ["hello", "world"])
+
 ##st.session_state:存储和访问跨组件共享的变量
 if 'login' not in st.session_state or st.session_state['login'] != True:
     st.title("LanPIP - Login Page")
