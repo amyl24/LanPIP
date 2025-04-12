@@ -12,7 +12,6 @@ from st_audiorec import st_audiorec
 from streamlit.components.v1 import html
 from PIL import Image
 from io import BytesIO
-# from transformers import TrOCRProcessor, VisionEncoderDecoderModel
 import sys
 
 sys.path.append('./test')
@@ -21,6 +20,18 @@ from bots import reasoning, TBLT, vocab,image
 from typing import Union
 from pydub import AudioSegment
 from pydub.utils import which
+from datetime import datetime
+
+SUPABASE_URL = "https://fvctjijwxnafbqalacaj.supabase.co"
+SUPABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2Y3RqaWp3eG5hZmJxYWxhY2FqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0MzkwMTUsImV4cCI6MjA2MDAxNTAxNX0._jOz-1KvPIvx03dK88kT-WIpNCz5o56Wjpm7hUcy9L0y"
+
+headers = {
+    "apikey": SUPABASE_API_KEY,
+    "Authorization": f"Bearer {SUPABASE_API_KEY}",
+    "Content-Type": "application/json"
+}
+
+
 @dataclass
 class Message:
     actor: str
@@ -60,7 +71,19 @@ fake = Faker()
 def generate_response():
     output = fake.text()
     return output
-
+    
+def upload_chat_to_supabase(username, system, chat_history):
+    payload = {
+        "username": username,
+        "system": system,
+        "content": chat_history
+    }
+    response = requests.post(
+        f"{SUPABASE_URL}/rest/v1/chat_history",
+        headers=headers,
+        data=json.dumps(payload)
+    )
+    print(response.status_code, response.text)
 ##st.session_state:存储和访问跨组件共享的变量
 if 'login' not in st.session_state or st.session_state['login'] != True:
     st.title("LanPIP - Login Page")
@@ -158,23 +181,15 @@ if 'login' in st.session_state and st.session_state['login'] == True:
         if user_input.lower() == 'exit':
             st.session_state['stage'] = 0  # 0
             st.session_state['model_type'] = 'deepseek-chat'  # 0
-            # st.session_state['history'] = []
-            # st.session_state['cus_prompt'] = ''
             st.session_state['input_history'] = []
             st.session_state['topic'] = ''
             st.session_state["upload"] = False
             bot_response = ('All records have been deleted. If you need anything else, please let me know! 😊')
-            user_folder = f"./chat_logs/{st.session_state['username']}"
-            if not os.path.exists(user_folder):
-                os.makedirs(user_folder)
-
-            file_path = os.path.join(user_folder, 'chat_history.json')
-
-            with open(file_path, 'r') as f:
-                existing_data = json.load(f)
-            existing_data.update({st.session_state['system']: st.session_state['history']})
-            with open(file_path, 'w') as f:
-                json.dump(existing_data, f, indent=4)
+            upload_chat_to_supabase(
+                    st.session_state["username"],
+                    st.session_state["system"],
+                    st.session_state["history"]
+                        )
             st.balloons()
             redirect_to_google()
 
