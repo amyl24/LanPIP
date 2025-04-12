@@ -23,7 +23,7 @@ from pydub.utils import which
 from supabase import create_client, Client
 
 url = "https://fvctjijwxnafbqalacaj.supabase.co"  # 你的 Supabase 项目 URL
-key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2Y3RqaWp3eG5hZmJxYWxhY2FqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0MzkwMTUsImV4cCI6MjA2MDAxNTAxNX0._jOz-1KvPIvx03dK88kT-WIpNCz5o56Wjpm7hUcy9L0y"  # 你的 Supabase API 密钥
+key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2Y3RqaWp3eG5hZmJxYWxhY2FqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NDQzOTAxNSwiZXhwIjoyMDYwMDE1MDE1fQ.op4AzFCnCIIWeMwYj9XIBcLVX7dtURg3aEfPR31X2Qc"  # 你的 Supabase API 密钥
 
 supabase: Client = create_client(url, key)
 
