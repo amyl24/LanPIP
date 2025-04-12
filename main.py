@@ -20,16 +20,12 @@ from bots import reasoning, TBLT, vocab,image
 from typing import Union
 from pydub import AudioSegment
 from pydub.utils import which
-from datetime import datetime
+from supabase import create_client, Client
 
-SUPABASE_URL = "https://fvctjijwxnafbqalacaj.supabase.co"
-SUPABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2Y3RqaWp3eG5hZmJxYWxhY2FqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0MzkwMTUsImV4cCI6MjA2MDAxNTAxNX0._jOz-1KvPIvx03dK88kT-WIpNCz5o56Wjpm7hUcy9L0y"
+url = "https://fvctjijwxnafbqalacaj.supabase.co"  # 你的 Supabase 项目 URL
+key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2Y3RqaWp3eG5hZmJxYWxhY2FqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0MzkwMTUsImV4cCI6MjA2MDAxNTAxNX0._jOz-1KvPIvx03dK88kT-WIpNCz5o56Wjpm7hUcy9L0y"  # 你的 Supabase API 密钥
 
-headers = {
-    "apikey": SUPABASE_API_KEY,
-    "Authorization": f"Bearer {SUPABASE_API_KEY}",
-    "Content-Type": "application/json"
-}
+supabase: Client = create_client(url, key)
 
 
 @dataclass
@@ -72,18 +68,6 @@ def generate_response():
     output = fake.text()
     return output
     
-def upload_chat_to_supabase(username, system, chat_history):
-    payload = {
-        "username": username,
-        "system": system,
-        "content": chat_history
-    }
-    response = requests.post(
-        f"{SUPABASE_URL}/rest/v1/lanpip-chatdata",
-        headers=headers,
-        data=json.dumps(payload)
-    )
-    print(response.status_code, response.text)
     
 if st.button("Test Upload"):
     upload_chat_to_supabase("test_user", "test_system", ["hello", "world"])
@@ -188,11 +172,16 @@ if 'login' in st.session_state and st.session_state['login'] == True:
             st.session_state['topic'] = ''
             st.session_state["upload"] = False
             bot_response = ('All records have been deleted. If you need anything else, please let me know! 😊')
-            upload_chat_to_supabase(
-                    st.session_state["username"],
-                    st.session_state["system"],
-                    st.session_state["history"]
-                        )
+            data = {
+                    "username":st.session_state['username'] ,
+                    "system":st.session_state['system'] ,
+                    "content": st.session_state['history']
+                }
+            response = supabase.table("lanpip-chatdata").insert(data).execute()
+            if response.status_code == 201:
+                print("Data uploaded successfully!")
+            else:
+                print("Error uploading data:", response.error_message)
             st.balloons()
             redirect_to_google()
 
