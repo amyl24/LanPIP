@@ -176,10 +176,10 @@ if 'login' in st.session_state and st.session_state['login'] == True:
                     "content": st.session_state['history']
                 }
             response = supabase.table("lanpip-chatdata").insert(data).execute()
-            if response.status_code == 201:
-                print("Data uploaded successfully!")
+            if response.status == 201:
+                st.success("上传成功！")
             else:
-                print("Error uploading data:", response.error_message)
+                st.error(f"上传失败，错误信息: {response.error}")
             st.balloons()
             redirect_to_google()
 
