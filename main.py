@@ -76,7 +76,10 @@ if 'login' not in st.session_state or st.session_state['login'] != True:
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     if st.button('Login'):
-        if (username in ['luzq1','lvyj1','lvyj2','shs1','shs2','zhjw1','zhjw2','admin', '2264019668@qq.com','2363620110@qq.com', 'kmb2287@tc.columbia.edu', 'ziyue789@gmail.com',
+        if (username in ['wuzh1','wuzh2','yajy1','yajy2','zhqx1','zhxq2','hubl1','hubl2','hely1','hely2','chzy1','chzy2','chen1','chen2','wamj1','wamj2','cayh1','cayh2','zhq1','zhq2',
+                         'chyn1','chyn2','guhr1','guhr2','liyl1','liyl2','qikt1','qikt2','xihy1','xihy2','pey1','pey2','guxj1','guxj2','dixc1','dixc2','lizx1','lizx2','fam1','fam2',
+                         'limc1','limc2','chjy1','chjy2','lejy1','lejy2','wany1','wany2','lijm1','lijm2','wawx1','wawx2','hexr1','hexr2','yayp1','yayp2','yajc1','yajc2','zhyx1','zhyx2','fasf1','fasf2'
+                         'luzq1','lvyj1','lvyj2','shs1','shs2','zhjw1','zhjw2','admin', '2264019668@qq.com','2363620110@qq.com', 'kmb2287@tc.columbia.edu', 'ziyue789@gmail.com',
                          'yf2696@tc.columbia.edu', 'jh4751@tc.columbia.edu', 'lrk2150@tc.columbia.edu',
                          'rl3370@tc.columbia.edu', 'htn2113@tc.columbia.edu', 'sms2491@tc.columbia.edu',
                          'qw2421@tc.columbia.edu', 'yy3341@tc.columbia.edu', 'cy2707@tc.columbia.edu',
