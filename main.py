@@ -78,7 +78,7 @@ if 'login' not in st.session_state or st.session_state['login'] != True:
     if st.button('Login'):
         if (username in ['wuzh1','wuzh2','zhwy1','zhwy2','hely1','hely2','guyt1','guyt2','chjz2','chjz2','wamj1','wamj2','suj1','suj2','zhm1','zhm2','yayb1','yayb2','yay1','yay2','dirx1','dirx2',
                          'lirh1','lirh2','lizx1','lizx2','liyl1','liyl2','qikt1','qikt2','xihy1','xihy2','lilf1','lilf2','dukp1','dukp2','yalh1','yalh2','yawq1','yawq2','ked1','ked2',
-                         'huj1','huj2','jiqm1','jiqm2','luxy1','luxy2','chzy1','chzy2','lijm1','lijm2','chl1','chl2','zhzy1','zhzy2','gahr1','gahr2','maxt1','maxt2','qkt1','qkt2',
+                         'huj1','huj2','jiqm1','jiqm2','luxy1','luxy2','chzy1','chzy2','lijm1','lijm2','chl1','chl2','zhzy1','zhzy2','gahr1','gahr2','maxt1','maxt2','qkt1','qkt2','jasy1','jasy2',
                          'luzq1','lvyj1','lvyj2','shs1','shs2','zhjw1','zhjw2','admin', '2264019668@qq.com','2363620110@qq.com', 'kmb2287@tc.columbia.edu', 'ziyue789@gmail.com',
                          'yf2696@tc.columbia.edu', 'jh4751@tc.columbia.edu', 'lrk2150@tc.columbia.edu',
                          'rl3370@tc.columbia.edu', 'htn2113@tc.columbia.edu', 'sms2491@tc.columbia.edu',
